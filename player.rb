@@ -7,18 +7,22 @@ class Player
     add_pieces
   end
 
-
   private
 
   def add_pieces
-    @pieces << Pawn.new(@color, 0)
-    @pieces << Pawn.new(@color, 1)
-    @pieces << Pawn.new(@color, 2)
-    @pieces << Pawn.new(@color, 3)
-    @pieces << Pawn.new(@color, 4)
-    @pieces << Pawn.new(@color, 5)
-    @pieces << Pawn.new(@color, 6)
-    @pieces << Pawn.new(@color, 7)
+    add_pawns
+    add_rooks
+  end
+
+  def add_pawns
+    0.upto(7) do |i|
+      @pieces << Pawn.new(@color, i)
+    end
+  end
+
+  def add_rooks
+    @pieces << Rook.new(@color, 0)
+    @pieces << Rook.new(@color, 7)
   end
 
 end

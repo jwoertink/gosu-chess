@@ -1,11 +1,15 @@
 class Board
   WHITE = 0xFFFFFFFF.freeze
   BLACK = 0xFF000000.freeze
-  BLOCK = {width: 75, height: 75}
-  attr_accessor :layout
+  attr_accessor :layout, :block
 
   def initialize
     @layout = Array.new(8, Array.new(8, ''))
+    @block = {
+      width: $window.width / 8,
+      height: $window.height / 8
+    }
+    $window.board = self
     setup
   end
 
@@ -15,12 +19,11 @@ class Board
         method = row_number.even? ? :even? : :odd?
         color = col_number.send(method) ? WHITE : BLACK
         $window.draw_quad(
-          col_number * BLOCK[:width], row_number * BLOCK[:width], color,
-          col_number * BLOCK[:width] + BLOCK[:width], row_number * BLOCK[:width], color,
-          col_number * BLOCK[:width], row_number * BLOCK[:height] + BLOCK[:height], color,
-          col_number * BLOCK[:height] + BLOCK[:height], row_number * BLOCK[:width] + BLOCK[:width], color,
+          col_number * @block[:width], row_number * @block[:width], color,
+          col_number * @block[:width] + @block[:width], row_number * @block[:width], color,
+          col_number * @block[:width], row_number * @block[:height] + @block[:height], color,
+          col_number * @block[:height] + @block[:height], row_number * @block[:width] + @block[:width], color,
         0)
-
       end
     end
     @black.pieces.map(&:draw)

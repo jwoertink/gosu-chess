@@ -1,16 +1,17 @@
 class Game < Gosu::Window
   attr_accessor :board
 
-  def initialize
-    super(600, 600, false)
+  def initialize(width, height, full_screen)
+    super(width, height, full_screen)
     $window = self
-    self.board = Board.new
+    @board = Board.new
     self.caption = 'Ruby Chess'
-
+    @cursor = Gosu::Image.new(self, 'images/cursor.png')
   end
 
   def draw
-    self.board.draw
+    @board.draw
+    @cursor.draw(self.mouse_x, self.mouse_y, 10)
   end
 
   def update
