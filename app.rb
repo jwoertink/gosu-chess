@@ -11,8 +11,4 @@ require 'board'
 require 'game'
 
 game = Game.new(800, 800, false)
-
 game.show
-
-
-puts game.board.layout
