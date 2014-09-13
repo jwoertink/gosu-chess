@@ -1,6 +1,6 @@
 class Board
-  WHITE = 0xFFFFFFFF.freeze
-  BLACK = 0xFF000000.freeze
+  WHITE = 0xFFE6E6E6.freeze
+  BLACK = 0xFF1C1C1C.freeze
   attr_accessor :layout, :block
 
   def initialize
