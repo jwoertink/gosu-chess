@@ -11,15 +11,30 @@ class Game < Gosu::Window
 
   def draw
     @board.draw
-    @cursor.draw(self.mouse_x, self.mouse_y, 10)
+    @cursor.draw(mouse_x, mouse_y, 10)
   end
 
   def update
+    if piece_selected?
 
+    end
   end
 
   def button_down(id)
-    close if id.eql? Gosu::KbEscape
+    case id
+    when Gosu::KbEscape
+      close
+    when Gosu::MsLeft
+      puts "clicking on #{mouse_x}, #{mouse_y}"
+    end
+  end
+
+  def piece_selected?
+    false
+  end
+
+  def current_piece
+    #code
   end
 
 end
