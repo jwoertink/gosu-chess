@@ -13,7 +13,7 @@ class King < Piece
   end
 
   def update
-
+    # doing some update
   end
 
 end
