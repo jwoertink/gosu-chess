@@ -2,7 +2,7 @@ require 'rubygems'
 require 'bundler'
 Bundler.require
 require 'gosu'
-$: << File.dirname(__FILE__)
+$: << File.join(File.dirname(__FILE__), 'lib')
 require 'piece'
 require 'pawn'
 require 'rook'
