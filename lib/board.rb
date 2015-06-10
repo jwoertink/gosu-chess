@@ -4,11 +4,12 @@ class Board
   attr_accessor :layout, :block
 
   def initialize
-    @layout = Array.new(8, Array.new(8, ''))
+    @layout = Array.new(8) { Array.new(8, '') }
     @block = {
       width: $window.width / 8,
       height: $window.height / 8
     }
+    @squares = {}
     $window.board = self
     setup
   end
@@ -18,11 +19,23 @@ class Board
       row.each_with_index do |col, col_number|
         method = row_number.even? ? :even? : :odd?
         color = col_number.send(method) ? WHITE : BLACK
+        block = @squares["#{row_number}:#{col_number}"]
+        block = {
+          x1: col_number * @block[:width],
+          y1: row_number * @block[:width],
+          x2: col_number * @block[:width] + @block[:width],
+          y2: row_number * @block[:width],
+          x3: col_number * @block[:width],
+          y3: row_number * @block[:height] + @block[:height],
+          x4: col_number * @block[:height] + @block[:height],
+          y4: row_number * @block[:width] + @block[:width]
+        }
+
         $window.draw_quad(
-          col_number * @block[:width], row_number * @block[:width], color,
-          col_number * @block[:width] + @block[:width], row_number * @block[:width], color,
-          col_number * @block[:width], row_number * @block[:height] + @block[:height], color,
-          col_number * @block[:height] + @block[:height], row_number * @block[:width] + @block[:width], color,
+          block[:x1], block[:y1], color,
+          block[:x2], block[:y2], color,
+          block[:x3], block[:y3], color,
+          block[:x4], block[:y4], color,
         0)
       end
     end
@@ -32,6 +45,10 @@ class Board
 
   def update
 
+  end
+
+  def find_square(x, y)
+    
   end
 
   private

@@ -26,6 +26,8 @@ class Game < Gosu::Window
       close
     when Gosu::MsLeft
       puts "clicking on #{mouse_x}, #{mouse_y}"
+      square = board.find_square(mouse_x, mouse_y)
+      binding.pry
     end
   end
 

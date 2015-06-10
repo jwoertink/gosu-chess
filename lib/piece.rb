@@ -1,10 +1,9 @@
 class Piece
-  attr_accessor :color, :spot
+  attr_accessor :color, :spot, :image
 
-  def initialize(color, spot)
-    @board = $window.board
+  def initialize(color, column)
     @color = color
-    @spot = spot
+    @spot = {column: column}
     @image = Gosu::Image.new($window, "images/#{@color}_#{name}.png", false)
     set_initial_spot
   end
