@@ -60,8 +60,12 @@ class Board
       y < grid[:y3] &&
       y < grid[:y4]
     }
-    row, col = *square.first.split(":").map(&:to_i)
-    layout[row][col]
+    if square
+      row, col = *square.first.split(":").map(&:to_i)
+      layout[row][col]
+    else
+      ""
+    end
   end
 
   private
