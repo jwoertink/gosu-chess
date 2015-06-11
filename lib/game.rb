@@ -25,14 +25,17 @@ class Game < Gosu::Window
     when Gosu::KbEscape
       close
     when Gosu::MsLeft
-      puts "clicking on #{mouse_x}, #{mouse_y}"
       square = board.find_square(mouse_x, mouse_y)
-      binding.pry
+      if square.is_a? Piece
+        @piece_selected = true
+      else
+        @piece_selected = false
+      end
     end
   end
 
   def piece_selected?
-    false
+    @piece_selected
   end
 
   def current_piece
