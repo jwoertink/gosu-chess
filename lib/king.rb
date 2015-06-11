@@ -1,13 +1,5 @@
 class King < Piece
 
-  def draw
-    @image.draw(@x, @y, 2)
-  end
-
-  def update
-    # doing some update
-  end
-
   private
 
   def set_initial_spot

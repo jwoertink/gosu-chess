@@ -16,7 +16,7 @@ class Game < Gosu::Window
 
   def update
     if piece_selected?
-
+      current_piece.update(mouse_x, mouse_y)
     end
   end
 
@@ -28,6 +28,7 @@ class Game < Gosu::Window
       square = board.find_square(mouse_x, mouse_y)
       if square.is_a? Piece
         @piece_selected = true
+        @current_piece = square
       else
         @piece_selected = false
       end
@@ -39,7 +40,7 @@ class Game < Gosu::Window
   end
 
   def current_piece
-    #code
+    @current_piece
   end
 
 end

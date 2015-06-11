@@ -1,13 +1,5 @@
 class Knight < Piece
 
-  def draw
-    @image.draw(@x, @y, 2)
-  end
-
-  def update
-
-  end
-
   private
 
   def set_initial_spot

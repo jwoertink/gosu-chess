@@ -11,4 +11,13 @@ class Piece
   def name
     self.class.name.downcase
   end
+
+  def draw
+    @image.draw(@x, @y, 2)
+  end
+
+  def update(x, y)
+    @x, @y = x, y
+    draw
+  end
 end
