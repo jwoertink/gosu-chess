@@ -28,9 +28,9 @@ class Game < Gosu::Window
       close
     when Gosu::MsLeft
       square = board.find_square(mouse_x, mouse_y)
-      if square.is_a? Piece
+      if square.item
         @piece_selected = true
-        @current_piece = square
+        @current_piece = square.item
       else
         @piece_selected = false
       end
@@ -45,13 +45,13 @@ class Game < Gosu::Window
         puts "droppable"
       else
         puts "#{current_piece.name}"
-        puts "#{square.name}"
+        puts "#{square.item}"
       end
     end
   end
 
   def piece_selected?
-    @piece_selected
+    !!@piece_selected
   end
 
   def current_piece

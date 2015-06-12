@@ -1,16 +1,17 @@
 class Board
   WHITE = 0xFFE6E6E6.freeze
   BLACK = 0xFF1C1C1C.freeze
-  attr_accessor :layout
+  attr_accessor :layout, :squares
 
   def initialize
     @layout = Array.new(8) { Array.new(8) { Square.new } }
+    @squares = []
     $window.board = self
     setup
   end
 
   def draw
-    @layout.each {|row| row.map(&:draw) }
+    @squares.map(&:draw)
     @black.pieces.map(&:draw)
     @white.pieces.map(&:draw)
   end
@@ -20,24 +21,10 @@ class Board
   end
 
   # Find the square inside of the bounding box
-  # Returns a Piece or ""
+  # Returns a Square
   def find_square(x, y)
-    square = @squares.find { |k, grid|
-      x > grid[:x1] &&
-      x > grid[:x3] &&
-      x < grid[:x2] &&
-      x < grid[:x4] &&
-      y > grid[:y1] &&
-      y > grid[:y2] &&
-      y < grid[:y3] &&
-      y < grid[:y4]
-    }
-    if square
-      row, col = *square.first.split(":").map(&:to_i)
-      layout[row][col]
-    else
-      ""
-    end
+    square = @squares.find { |sq| sq.in_bounding_box?(x, y) }
+    square
   end
 
   private
@@ -59,6 +46,7 @@ class Board
         col_square.point_tr = {x: col_number * Square::WIDTH + Square::WIDTH, y: row_number * Square::WIDTH}
         col_square.point_bl = {x: col_number * Square::WIDTH, y: row_number * Square::HEIGHT + Square::HEIGHT}
         col_square.point_br = {x: col_number * Square::HEIGHT + Square::HEIGHT, y: row_number * Square::WIDTH + Square::WIDTH}
+        @squares << col_square
       end
     end
   end

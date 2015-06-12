@@ -32,4 +32,15 @@ class Square
     0)
   end
 
+  def in_bounding_box?(x, y)
+    x > @point_tl[:x] &&
+    x > @point_bl[:x] &&
+    x < @point_tr[:x] &&
+    x < @point_br[:x] &&
+    y > @point_tl[:y] &&
+    y > @point_tr[:y] &&
+    y < @point_bl[:y] &&
+    y < @point_br[:y]
+  end
+
 end
