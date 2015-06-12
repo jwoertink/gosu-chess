@@ -15,8 +15,10 @@ class Game < Gosu::Window
   end
 
   def update
-    if piece_selected?
-      current_piece.update(mouse_x, mouse_y)
+    if button_down?(Gosu::MsLeft)
+      if piece_selected?
+        current_piece.update(mouse_x, mouse_y)
+      end
     end
   end
 
