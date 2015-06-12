@@ -1,5 +1,13 @@
 class King < Piece
 
+  def can_attack_piece?(piece)
+
+  end
+
+  def can_move_to_square?(square)
+
+  end
+
   private
 
   def set_initial_spot

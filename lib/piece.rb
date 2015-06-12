@@ -20,4 +20,8 @@ class Piece
     @x, @y = x, y
     draw
   end
+
+  def empty?
+    false
+  end
 end
