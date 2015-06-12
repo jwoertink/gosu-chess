@@ -1,11 +1,12 @@
 class Square
-  attr_accessor :spot, :color
+  attr_accessor :spot, :color, :item
   attr_writer :point_tl, :point_tr, :point_bl, :point_br
 
-  WIDTH = $window.width / 8
-  HEIGHT = $window.height / 8
+  WIDTH = 100 #$window.width / 8
+  HEIGHT = 100 #$window.height / 8
 
   def initialize
+    @item = nil
   end
 
   # points are hashes with x,y values
@@ -19,7 +20,7 @@ class Square
   end
 
   def empty?
-    
+    @item.nil?
   end
 
   def draw

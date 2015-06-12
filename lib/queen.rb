@@ -12,8 +12,8 @@ class Queen < Piece
 
   def set_initial_spot
     @spot[:row] = @color.eql?('white') ? 0 : 7
-    @x = ((@spot[:column] * $window.board.block[:height]) + $window.board.block[:width] / 2.0) - (@image.width / 2.0)
-    @y = (@spot[:row] * $window.board.block[:height]) + 1.5
-    $window.board.layout[@spot[:row]][@spot[:column]] = self
+    @x = ((@spot[:column] * Square::HEIGHT) + Square::WIDTH / 2.0) - (@image.width / 2.0)
+    @y = (@spot[:row] * Square::HEIGHT) + 1.5
+    $window.board.layout[@spot[:row]][@spot[:column]].item = self
   end
 end

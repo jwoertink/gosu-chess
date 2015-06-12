@@ -1,7 +1,7 @@
 class Board
   WHITE = 0xFFE6E6E6.freeze
   BLACK = 0xFF1C1C1C.freeze
-  attr_accessor :layout, :block
+  attr_accessor :layout
 
   def initialize
     @layout = Array.new(8) { Array.new(8) { Square.new } }

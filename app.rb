@@ -12,6 +12,7 @@ require 'knight'
 require 'king'
 require 'queen'
 require 'player'
+require 'square'
 require 'board'
 require 'game'
 
