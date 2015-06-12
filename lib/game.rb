@@ -37,6 +37,19 @@ class Game < Gosu::Window
     end
   end
 
+  def button_up(id)
+    case id
+    when Gosu::MsLeft
+      square = board.find_square(mouse_x, mouse_y)
+      if square.empty?
+        puts "droppable"
+      else
+        puts "#{current_piece.name}"
+        puts "#{square.name}"
+      end
+    end
+  end
+
   def piece_selected?
     @piece_selected
   end
