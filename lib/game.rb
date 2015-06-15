@@ -17,7 +17,8 @@ class Game < Gosu::Window
   def update
     if button_down?(Gosu::MsLeft)
       if piece_selected?
-        current_piece.update(mouse_x, mouse_y)
+        current_piece.moving = true
+        current_piece.update((mouse_x - 20), (mouse_y - 20))
       end
     end
   end
@@ -41,11 +42,13 @@ class Game < Gosu::Window
     case id
     when Gosu::MsLeft
       square = board.find_square(mouse_x, mouse_y)
+      current_piece.moving = false
       if square.empty?
-        puts "droppable"
+        puts "empty #{square.color}"
+        square.item = current_piece
       else
-        puts "#{current_piece.name}"
-        puts "#{square.item}"
+        puts "CURRENT #{current_piece.name}"
+        puts "SELECTED #{square.item.name}"
       end
     end
   end

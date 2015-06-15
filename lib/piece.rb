@@ -1,8 +1,9 @@
 class Piece
-  attr_accessor :color, :spot, :image
+  attr_accessor :color, :spot, :image, :moving
 
   def initialize(color, column)
     @color = color
+    @moving = false
     @spot = {column: column}
     @image = Gosu::Image.new($window, "images/#{@color}_#{name}.png", false)
     set_initial_spot
@@ -13,7 +14,8 @@ class Piece
   end
 
   def draw
-    @image.draw(@x, @y, 2)
+    index = moving ? 3 : 2
+    @image.draw(@x, @y, index)
   end
 
   def update(x, y)
